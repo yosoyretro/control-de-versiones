@@ -1,0 +1,93 @@
+{% extends 'Menu.html' %}
+
+
+{% block content %}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <br>
+
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="content-wrapper">
+
+                    <div class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+
+                                    <div class="card-body m-5">
+                                        <div class="row">
+
+                                            <div class="col-5 w-100">
+                                                <label for="exampleInputPassword1">Seleccione la Asignatura</label>
+                                                <select name="" id="" class="form-control">
+                                                    <option>....</option>
+                                                </select>
+                                            </div>
+                                            <br>
+
+                                        </div>
+                                        <br>
+                                        <div class="col-5 w-100">
+                                            <label for="exampleInputPassword1">Añada un objetivo a este año
+                                                electivo</label>
+                                            <input type="text" class="w-100 form-control" placeholder="objetivo">
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="row border">
+                                            <h1 class="text-danger text-center">Opciones que debes de llenar</h1>
+                                            <div class="row p-5 alig-items-center  text-center">
+                                                <div class="col-auto">
+                                                    <div class="col-5 w-100">
+                                                        <div class="col">
+                                                            <button class="btn btn-primary text-white">Añadir firmas de
+                                                                responsabilidad</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="col-5 w-100">
+                                                        <div class="col">
+                                                            <button class="btn btn-primary text-white">Añadir
+                                                                referencia</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="col-5 w-100">
+                                                        <div class="col">
+                                                            <button class="btn btn-primary text-white">Añadir ambiente de desarrollo </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary w-100" name="btn-unidad" value="Crear"></input>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">cerrar</button>
+                    </div>
+            </form>
+
+            <!--MODALS-->
+        </div>
+    </main>
+
+</div>
+
+
+
+{% endblock content %}

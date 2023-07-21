@@ -1,0 +1,78 @@
+{% extends 'Menu.html' %}
+
+
+{% block content %}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <br>
+
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="content-wrapper">
+
+                    <div class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+
+                                    <div class="card-body ">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Ingrese la cedula</label>
+                                            <input type="text" class="form-control"
+                                                placeholder="numero de la cedula" name="cedula">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5 form-group">
+                                                <label for="exampleInputPassword1">Ingrese los nombres </label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Codigo de la carrera" name="nombres">
+                                            </div>
+                                            <div class="col-5 form-group">
+                                                <label for="exampleInputPassword1">Ingrese los apellidos
+                                                </label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Codigo de la carrera" name="apellidos">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="">Seleccione el rol que va a interpretar este
+                                                usuario</label>
+                                            <br>
+
+                                            <select class="custom-select form-control-border w-100"
+                                                id="exampleSelectBorder" name="opciones">
+                                                {% for i in rol_data %}
+                                                <option value="{{ i.id }}">{{ i.nombre }}</option>
+                                                {% endfor %}
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary w-100" name="btn-usuario" value="Crear"></input>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">cerrar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</div>
+
+
+
+{% endblock content %}

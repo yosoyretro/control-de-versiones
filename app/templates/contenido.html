@@ -1,0 +1,35 @@
+{% extends 'Menu.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <br>
+
+            <!-- Botón para añadir nuevo formulario -->
+            <button type="button" class="btn btn-primary mb-3" onclick="agregarFormulario()">Añadir</button>
+
+            <!-- Contenedor para los formularios -->
+            <div id="formularios-container">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="content-wrapper">
+                        <!-- ... Tu contenido de formulario existente ... -->
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary w-100" name="btn-usuario" value="Crear"></input>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+{% endblock content %}
+{% block scripts %}
+<script src="js/interaccion.js"></script>
+{% endblock scripts %}

@@ -1,0 +1,57 @@
+{% extends 'Menu.html' %}
+
+
+{% block content %}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <br>
+
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="content-wrapper">
+
+                    <div class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+
+                                    <div class="card-body ">
+
+                                        <div class="row">
+
+                                            <div class="col-5 form-group">
+                                                <label for="exampleInputPassword1">Ingrese un rol</label>
+
+                                                <input type="text" required class="form-control"
+                                                    placeholder="Nombre del rol">
+                                            </div>
+                                            <br>
+                                            
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary w-100" name="btn-unidad" value="Crear"></input>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">cerrar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</div>
+
+
+
+{% endblock content %}
