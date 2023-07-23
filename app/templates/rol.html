@@ -13,7 +13,28 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="content-wrapper">
+                    {% if msg == False %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div >
+                            <b>Rol no registrado </b>
+                            <br>
+                            <span class="">
+                                verifica si el rol ya existe en la base de datos.
+                            </span>
+                        </div>
+                      </div>
 
+                    {% elif msg == True %}
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <div>
+                            Rol registrado con exito!
+                        </div>
+                    </div>
+                    {% endif %}
                     <div class="content-header">
                         <div class="container-fluid">
                             <div class="row mb-2">
@@ -26,11 +47,11 @@
                                             <div class="col-5 form-group">
                                                 <label for="exampleInputPassword1">Ingrese un rol</label>
 
-                                                <input type="text" required class="form-control"
+                                                <input type="text" required class="form-control" name="nombre-rol"
                                                     placeholder="Nombre del rol">
                                             </div>
                                             <br>
-                                            
+
                                         </div>
                                     </div>
 

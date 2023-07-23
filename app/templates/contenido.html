@@ -4,32 +4,23 @@
 
 <div id="layoutSidenav_content">
     <main>
-        <div class="container-fluid px-4">
-            <br>
-
-            <!-- Botón para añadir nuevo formulario -->
-            <button type="button" class="btn btn-primary mb-3" onclick="agregarFormulario()">Añadir</button>
-
-            <!-- Contenedor para los formularios -->
-            <div id="formularios-container">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="content-wrapper">
-                        <!-- ... Tu contenido de formulario existente ... -->
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary w-100" name="btn-usuario" value="Crear"></input>
-                        <br>
-                        <br>
-                        <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">cerrar</button>
-                    </div>
-                </form>
-            </div>
+        <!-- ... Tu código HTML existente ... -->
+<div id="formularios-container" class="container text-center p-4 border radius" style="background-color: rgb(243, 243, 243);">
+    <form method="post" id="formulario-original">
+        {% csrf_token %}
+        <div class="content-wrapper">
+            <!-- ... Tu contenido de formulario existente ... -->
+            <input type="text" placeholder="nombre-contenido" name="nombre-contenido">
+            <input type="text" placeholder="horas-doncencia" name="horas-doncencia">
+            <input type="text" placeholder="horas-practica" name="horas-practica">
         </div>
+    </form>
+</div>
+<!-- Contenedor para las filas de formularios clonados -->
+<div id="formularios-filas" class="container mt-3"></div>
+<!-- ... Tu código HTML existente ... -->
+
     </main>
 </div>
 
 {% endblock content %}
-{% block scripts %}
-<script src="js/interaccion.js"></script>
-{% endblock scripts %}

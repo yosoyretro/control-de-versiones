@@ -10,9 +10,31 @@
             <br>
 
 
-            <form method="post">
+            <form method="POST">
                 {% csrf_token %}
                 <div class="content-wrapper">
+                    {% if msg == False %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div >
+                            <b>Periodo no registrado </b>
+                            <br>
+                            <span class="">
+                                verifica si el Periodo ya existe en la base de datos.
+                            </span>
+                        </div>
+                      </div>
+
+                    {% elif msg == True %}
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <div>
+                            Periodo registrado con exito!
+                        </div>
+                    </div>
+                    {% endif %}
 
                     <div class="content-header">
                         <div class="container-fluid">
@@ -27,7 +49,7 @@
                                                 <label for="exampleInputPassword1">Ingrese el nombre del periodo</label>
 
                                                 <input type="text" required class="form-control"
-                                                    placeholder="Numero del periodo">
+                                                    placeholder="Nombre del periodo" name="nombre">
                                             </div>
                                             <br>
                                             

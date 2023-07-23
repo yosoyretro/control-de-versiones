@@ -24,8 +24,10 @@ urlpatterns = [
     path('crear-rol',views.rol,name='rol'),
     path('crear-contenidos',views.contenido,name='contenido'),
     path('crear-unidad',views.unidad,name='unidad'),
+    path('crear-asignatura',views.asignatura,name='asignatura'),
     path('crear-periodo',views.periodo,name='periodo'),
     path('crear-malla',views.malla,name='malla'),
     path('crear-periodo',views.periodo,name="periodo"),
-    path('documento',views.documento,name="doc")
+    path('documento',views.documento,name="doc"),
+    
 ]

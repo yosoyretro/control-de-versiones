@@ -13,6 +13,29 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="content-wrapper">
+                    {% if msg == False %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div >
+                            <b>Usuario no registrado </b>
+                            <br>
+                            <span class="">
+                                verifica si el Usuario ya existe en la base de datos.
+                            </span>
+                        </div>
+                      </div>
+
+                    {% elif msg == True %}
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <div>
+                            Usuario registrado con exito!
+                        </div>
+                    </div>
+                    {% endif %}
+                    
 
                     <div class="content-header">
                         <div class="container-fluid">
@@ -46,8 +69,8 @@
 
                                             <select class="custom-select form-control-border w-100"
                                                 id="exampleSelectBorder" name="opciones">
-                                                {% for i in rol_data %}
-                                                <option value="{{ i.id }}">{{ i.nombre }}</option>
+                                                {% for r in rol %}
+                                                    <option value="{{ r.id }}">{{ r.nombre }}</option>
                                                 {% endfor %}
                                             </select>
 
