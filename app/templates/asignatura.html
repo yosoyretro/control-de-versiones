@@ -1,6 +1,6 @@
 {% extends 'Menu.html' %}
 
-
+{% block title %}Asignatura{% endblock title %}
 {% block content %}
 
 
@@ -12,10 +12,31 @@
 
             <form method="post">
                 {% csrf_token %}
+                {% if msg == False %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div >
+                            <b>Asignatura no registrado </b>
+                            <br>
+                            <span class="">
+                                No se an podido guardar los datos correctamente comunicate con el administrador ;(.
+                            </span>
+                        </div>
+                      </div>
+
+                    {% elif msg == True %}
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <div>
+                            Asignatura registrada con exito!
+                        </div>
+                    </div>
+                    {% endif %}
+
+                
                 <div class="content-wrapper">
-                    
-                    
-                    
                     <div class="content-header">
                         <div class="container-fluid">
                             <div class="row mb-2">
@@ -24,27 +45,70 @@
                                     <div class="card-body ">
 
                                         <div class="row">
-
-                                            <div class="col-5 form-group">
-                                                <label for="exampleInputPassword1">Ingrese el numero de la
-                                                    unidad</label>
-
-                                                <input type="number" required class="form-control"
-                                                    placeholder="Numero de la unidad">
-                                            </div>
-                                            <br>
-                                            
-                                        </div>
-                                        <div class="row">
                                             <div class="col-10 form-group">
-                                                <label for="exampleInputPassword1">Ingrese el objetivo de la
-                                                    unidad</label>
-                                                <input type="text" required class="form-control" id="objetivo"
-                                                    placeholder="Escribe el objetivo de la unidad">
-                                                <small class="form-text text-muted">Proporciona una breve
-                                                    descripción del objetivo de la unidad.</small>
-
+                                                <label for="exampleInputPassword1">Ingrese el nombre de la
+                                                    Asignatura</label>
+                                                <input type="text" name="nombre-asignatura" required
+                                                    class="form-control" id="objetivo"
+                                                    placeholder="Nombre de la asignatura">
                                             </div>
+                                            <div class="form-group">
+                                                <label for="descripcion">aportes teoricos</label>
+                                                <textarea class="form-control" required name="aporte-teoricos" id="descripcion"
+                                                    rows="5" placeholder="Ingrese los aportes teoricos"></textarea>
+                                            </div>
+
+                                            <div class="col-10 form-group">
+                                                <label for="exampleInputPassword1">Ingrese el objetivos de la
+                                                    asignatura</label>
+                                                <input type="text" required class="form-control"
+                                                    name="objetivos-asignaturas" id="objetivo"
+                                                    placeholder="objetivo de la asignatura">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="descripcion">Ingrese los Objetivos especificos</label>
+                                                <textarea class="form-control" name="objetivos-especificos"
+                                                    id="descripcion" rows="5" required
+                                                    placeholder="objetivos especificos"></textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="descripcion">Ingrese una breve descripcion del producto
+                                                    academico </label>
+                                                <textarea class="form-control" required id="descripcion" name="descripcion-producto-academico" rows="2"
+                                                    placeholder="producto academico"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="descripcion">Ingrese el prerequisitos
+                                                    academico </label>
+                                                <input type="text" class="form-control" required name="requisitos" rows="2"
+                                                    placeholder="producto academico"></input>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="descripcion">Seleccione el Periodo</label>
+                                                <select class="custom-select form-control w-100"
+                                                    id="exampleSelectBorder" name="opciones">
+                                                    {% for r in dataperiodo %}
+                                                    <option value="{{ r.id }}">{{ r.nombre }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group p-4 m-2 container  border">
+
+                                                <button type="button" class="btn bg-transparent text-dark border "
+                                                    data-bs-target="#PA" data-bs-toggle="modal">Agregar Propiedades al
+                                                    producto Academico</button>
+
+                                                <button type="button" class="btn bg-transparent text-dark border "
+                                                    data-bs-target="#AA" data-bs-toggle="modal">Agregar Ambiente de
+                                                    aprendizaje</button>
+                                            </div>
+
+
+
                                         </div>
                                     </div>
 
@@ -54,17 +118,144 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer m-5">
                     <input type="submit" class="btn btn-primary w-100" name="btn-unidad" value="Crear"></input>
                     <br>
                     <br>
                     <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">cerrar</button>
                 </div>
+
+                <!--Modals de PRODUCTOS ACADEMICO -->
+                <div class="modal fade" id="PA" tabindex="-1" aria-labelledby="PA" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Producto Academico</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="content-wrapper">
+
+                                    <div class="content-header">
+                                        <div class="container-fluid">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-12">
+
+                                                    <div class="card-body ">
+                                                        <div class="form-group">
+                                                            <label for="">Ingrese los objetivos</label>
+                                                            <br>
+                                                            <textarea class="form-control" id="descripcion" name="obj-productoAcademico" rows="2"
+                                                                required placeholder="Objetivos"></textarea>
+                                                            <br>
+                                                            <label for="">Ingrese los productos parciales</label>
+                                                            <br>
+                                                            <textarea class="form-control" id="descripcion" rows="2"
+                                                                required placeholder="producto parciales" name="obj-productoParcial"></textarea>
+                                                            <br>
+                                                            <label for="">Ingrese los resultados estandares de
+                                                                presentacion </label>
+                                                            <br>
+                                                            <textarea class="form-control" id="descripcion" rows="2"
+                                                                required name="obj-resultadoEstandaresPresentacion"
+                                                                placeholder="Resultados estandares de presentacion"></textarea>
+                                                            <br>
+                                                            <label for="">Ingrese las integracion con otras
+                                                                Asignaturas</label>
+                                                            <textarea class="form-control" id="descripcion" rows="2"
+                                                                required name="obj-integracionAsignaturas"
+                                                                placeholder="integracion de asignatura"></textarea>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-trasnparent border w-100"
+                                        data-bs-dismiss="modal">cerrar</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Modals de AMBIENTE DE APRENDISAJE -->
+                <div class="modal fade" id="AA" tabindex="-1" aria-labelledby="AA" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ambiente de Aprendisaje</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="content-wrapper">
+
+                                    <div class="content-header">
+                                        <div class="container-fluid">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-12">
+
+                                                    <div class="card-body ">
+                                                        <div class="form-group">
+                                                            <label for="">Ingrese el metodo de enseñanza</label>
+                                                            <br>
+                                                            <textarea class="form-control" id="descripcion" name="amb-metodoEnseñanza" rows="2"
+                                                                placeholder="Metodos de enseñanza" required></textarea>
+                                                            <br>
+                                                            <label for="">Ingrese los medios </label>
+                                                            <br>
+                                                            <textarea class="form-control" name="amb-medios" id="descripcion" rows="2"
+                                                                placeholder="Medios" required></textarea>
+                                                            <br>
+                                                            <label for="">Ingrese la evaluaciones</label>
+                                                            <br>
+                                                            <textarea class="form-control" name="amb-evaluacion" id="descripcion" rows="2"
+                                                                placeholder="evaluacion" required></textarea>
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-trasnparent border w-100"
+                                        data-bs-dismiss="modal">cerrar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </form>
         </div>
-    </main>
+
+    
 
 </div>
+
+</form>
+</div>
+</main>
+
+</div>
+
 
 
 

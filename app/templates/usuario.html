@@ -20,7 +20,7 @@
                             <b>Usuario no registrado </b>
                             <br>
                             <span class="">
-                                verifica si el Usuario ya existe en la base de datos.
+                                verifica si el Usuario ya exiiste en la base de datos.
                             </span>
                         </div>
                       </div>
@@ -52,13 +52,13 @@
                                             <div class="col-5 form-group">
                                                 <label for="exampleInputPassword1">Ingrese los nombres </label>
                                                 <input type="text" class="form-control"
-                                                    placeholder="Codigo de la carrera" name="nombres">
+                                                    placeholder="Nombres de la persona" name="nombres" required>
                                             </div>
                                             <div class="col-5 form-group">
                                                 <label for="exampleInputPassword1">Ingrese los apellidos
                                                 </label>
                                                 <input type="text" class="form-control"
-                                                    placeholder="Codigo de la carrera" name="apellidos">
+                                                    placeholder="Apellidos de la persona" name="apellidos" required>
                                             </div>
                                         </div>
                                         <br>
@@ -67,8 +67,9 @@
                                                 usuario</label>
                                             <br>
 
-                                            <select class="custom-select form-control-border w-100"
-                                                id="exampleSelectBorder" name="opciones">
+                                            <select class="custom-select form-control w-100" required
+                                                id="exampleSelectBorder"  name="opciones">
+                                                <option value="">Seleccione el rol </option>
                                                 {% for r in rol %}
                                                     <option value="{{ r.id }}">{{ r.nombre }}</option>
                                                 {% endfor %}

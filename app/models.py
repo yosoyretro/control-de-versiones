@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Create your models here.º
 
 
 
@@ -46,16 +46,12 @@ class Asignatura(models.Model):
     id_producto_academico = models.ForeignKey(ProductoAcademico, on_delete=models.CASCADE)
     id_periodo = models.ForeignKey(Periodo, on_delete=models.CASCADE)
     id_ambiente_aprendisaje = models.ForeignKey(AmbienteAprendizaje, on_delete=models.CASCADE)
-    estado = models.BooleanField(default=True)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
-    fecha_modificacion = models.DateTimeField(null=True)
-
     def __str__(self):
         return self.nombre
 
 
 class Referencia(models.Model):
-    tipo = models.CharField(max_length=100)
+    tipo = models.CharField(max_length=100,unique=True)
     numero = models.IntegerField()
     descripcion = models.TextField()
     descri_existencia = models.TextField()

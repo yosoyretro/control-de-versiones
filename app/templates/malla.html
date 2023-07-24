@@ -20,12 +20,14 @@
                                 <div class="col-sm-12">
                                     <div class="card-body container">
                                         <div class="row border">
-                                            <h1 class="text-danger text-center ">Opciones que debes de llenar</h1>
+                                            <h1 class="text-dark text-center ">Opciones que debes de llenar</h1>
                                             <div class="row p-2 alig-items-center">
                                                 <div class="col-auto">
                                                     <div class="col-5 w-100">
                                                         <div class="col">
-                                                            <button class="btn btn-primary text-white">Añadir firmas de
+                                                            <button type="button" class="btn bg-transparent text-dark border"
+                                                                data-bs-target="#firmas" data-bs-toggle="modal">Añadir
+                                                                firmas de
                                                                 responsabilidad</button>
                                                         </div>
                                                     </div>
@@ -33,7 +35,7 @@
                                                 <div class="col-auto">
                                                     <div class="col-5 w-100">
                                                         <div class="col">
-                                                            <button class="btn btn-primary text-white">Añadir
+                                                            <button type="button" class="btn btn-trasnparent text-dark border">Añadir
                                                                 referencia</button>
                                                         </div>
                                                     </div>
@@ -41,14 +43,15 @@
                                                 <div class="col-auto">
                                                     <div class="col-5 w-100">
                                                         <div class="col">
-                                                            <button class="btn btn-primary text-white">Añadir ambiente de desarrollo </button>
+                                                            <button class="btn btn-transparent border text-dark ">Añadir ambiente
+                                                                de desarrollo </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
-                                            
+
                                         <br>
                                         <br>
                                         <div class="row">
@@ -70,7 +73,7 @@
                                         </div>
                                         <br>
                                         <br>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -85,10 +88,110 @@
                     </div>
             </form>
 
-            <!--MODALS-->
         </div>
     </main>
 
+</div>
+
+
+
+<div class="modal fade" id="firmas" tabindex="-1" aria-labelledby="firmas" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Firma de responsabilidad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="content-wrapper">
+
+                        <div class="content-header">
+                            <div class="container-fluid">
+                                <div class="row mb-2">
+                                    <div class="col-sm-12">
+
+                                        <div class="card-body ">
+                                            <div class="form-group">
+                                                <label for="">Seleccione el al responsable 1</label>
+                                                <br>
+
+                                                <select class="custom-select form-control w-100"
+                                                    id="exampleSelectBorder" name="referencia1">
+                                                    {% for i in trabajadores %}
+                                                    <option value="{{ i.id }}">{{ i.nombres }}{{ i.apellidos }} ({{i.id_rol.nombre }})</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <br>
+                                                <label for="">Seleccione el al responsable 2</label>
+                                                <br>
+                                                <select class="custom-select form-control w-100"
+                                                    id="exampleSelectBorder" name="referencia2">
+                                                    {% for i in trabajadores %}
+                                                    <option value="{{ i.id }}">{{ i.nombres }}{{ i.apellidos }} ({{i.id_rol.nombre }})</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <br>
+                                                <label for="">Seleccione el al responsable 3</label>
+                                                <br>
+                                                <select class="custom-select form-control w-100"
+                                                    id="exampleSelectBorder" name="referencia3">
+                                                    {% for i in trabajadores %}
+                                                        <option value="{{ i.id }}">{{ i.nombres }}{{ i.apellidos }} ({{ i.id_rol.nombre }})</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <br>    
+
+                                                <label for="">Seleccione el al Jefe de area </label>
+                                                <br>
+
+                                                <select class="custom-select form-control w-100"
+                                                    id="exampleSelectBorder" name="opciones">
+                                                    {% for i in trabajadores %}
+                                                    
+                                                    {% if i.id_rol.nombre == "Jefe de area" %}
+                                                        <option value="{{ i.id }}">{{ i.nombres }} {{ i.apellidos }}</option>
+                                                    {% endif %}
+
+                                                    {% endfor %}
+                                                </select>
+
+                                                <br>
+                                                <label for="">Seleccione el al Cordinado de carrera</label>
+                                                <br>
+
+                                                <select class="custom-select form-control w-100"
+                                                    id="exampleSelectBorder" name="opciones">
+                                                    {% for i in trabajadores %}
+                                                    
+                                                    {% if i.id_rol.nombre == "Cordinador de carrera" %}
+                                                        <option value="{{ i.id }}">{{ i.nombres }} {{ i.apellidos }}</option>
+                                                    {% endif %}
+
+                                                    {% endfor %}
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-trasnparent border w-100"
+                            data-bs-dismiss="modal">cerrar</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 

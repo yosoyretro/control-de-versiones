@@ -1,18 +1,13 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from app.models import Rol,Trabajador,Periodo
-# Create your views here.
+from app.models import Rol,Trabajador,Periodo,Unidad,ProductoAcademico,AmbienteAprendizaje,Asignatura
 
-def login(request):
-            
+def login(request):           
     return render(request,'login.html',{})
 
 def periodo(request):
     mensaje = ""
-
     if(request.method == "POST"):
-        print("Me cumplo el motodo post  ")
         nombreP = request.POST["nombre"]
-        print(nombreP)
         try:
             objp = Periodo(nombre=nombreP)
             objp.save()
@@ -26,12 +21,18 @@ def menu(request):
     return render(request,'Menu.html',{})
 
 def unidad(request):
-    return render(request,'unidad.html',{})
+    mensaje = ""
+    if(request.method == "POST"):
+        n = request.POST["numero"]
+        ob = request.POST["objetivo"]
+        obu = Unidad(numero=n,nombre=ob)
+        obu.save()
+        mensaje = "Unidad guardada con exito !"
+    return render(request,'unidad.html',{'msg':mensaje})
 
 
 def usuario(request):
     mensaje = ""
-    
     if (request.method == "POST"):
         try:
             cedula = request.POST["cedula"]
@@ -46,13 +47,57 @@ def usuario(request):
             mensaje = True
         except:
             mensaje = False
-
     rol = Rol.objects.all()
 
     return render(request,'usuario.html',{'rol':rol,'msg':mensaje})
 
 def asignatura(request):
-    return render(request,'asignatura.html',{})
+    mensaje = ""
+    if request.method == "POST":
+        try:
+            #PRODUCTO ACADEMICO 
+            objetivoPA = request.POST["obj-productoAcademico"]
+            productoPa = request.POST["obj-productoParcial"]
+            resultadosE = request.POST["obj-resultadoEstandaresPresentacion"]
+            integracionC = request.POST["obj-integracionAsignaturas"]
+            #AMBIENTE DE APRENDISAJE
+            variabelMetodosE = request.POST["amb-metodoEnseñanza"]
+            variableMedios = request.POST["amb-medios"]
+            variableEvaluacion = request.POST["amb-evaluacion"]
+            #ASIGNATURA
+            nombreAsignatura = request.POST["nombre-asignatura"]
+            aportes = request.POST["aporte-teoricos"]
+            requisitos = request.POST["requisitos"]
+            objetivosA = request.POST["objetivos-asignaturas"]
+            objetivosE = request.POST["objetivos-especificos"]
+            descripProducuto = request.POST["descripcion-producto-academico"]
+            periodo = request.POST["opciones"]
+            periodoobj = get_object_or_404(Periodo,id=periodo)
+            #AGREGAR LOS VALORES DE PRODUCTO ACADEMICO
+            objProductoA = ProductoAcademico(objetivo=objetivoPA,producto_parcial=productoPa,resultado_estandares=resultadosE,integracion_carreras=integracionC)
+            objProductoA.save()
+            #AGREGAR LOS VALORES DE AMBIENTE DE APREDNISAJE 
+            objAA = AmbienteAprendizaje(metodo_ensenanza=variabelMetodosE,medios=variableMedios,evaluacion=variableEvaluacion)
+            objAA.save()
+            #AGREGAR LS VALORES DE ASIGNATURAS 
+            varRol = Asignatura(nombre=nombreAsignatura,
+                                aporte_tmap=aportes,
+                                requisitos=requisitos,
+                                objetivo=objetivosA,
+                                objetivos_especificos=objetivosE,
+                                descripcion_producto_academico=descripProducuto,
+                                id_producto_academico=objProductoA,
+                                id_periodo=periodoobj,
+                                id_ambiente_aprendisaje=objAA)
+            varRol.save()
+            mensaje = True
+        except:
+            mensaje = False
+    dataperiodo = Periodo.objects.all()   
+    return render(request,'asignatura.html',{
+        'dataperiodo':dataperiodo,
+        'msg':mensaje
+    })
 
 def rol(request):
     mensaje = ""
@@ -71,10 +116,11 @@ def contenido(request):
     return render(request,'contenido.html',{})
 
 def malla(request):
+    objtra = Trabajador.objects.all()
     if(request.method == "POST"):
         return redirect('doc')
-    return render(request,'malla.html',{})
-
+    
+    return render(request,'malla.html',{'trabajadores':objtra})
 
 def documento(request):
     return render(request,'documento.html',{})

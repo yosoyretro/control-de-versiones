@@ -8,12 +8,19 @@
     <main>
         <div class="container-fluid px-4">
             <br>
-
-
             <form method="post">
                 {% csrf_token %}
                 <div class="content-wrapper">
-
+                    {% if msg %}
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <div>
+                            {{msg}}
+                        </div>
+                    </div>
+                {% endif %}
                     <div class="content-header">
                         <div class="container-fluid">
                             <div class="row mb-2">
@@ -28,7 +35,7 @@
                                                     unidad</label>
 
                                                 <input type="number" required class="form-control"
-                                                    placeholder="Numero de la unidad">
+                                                    placeholder="Numero de la unidad" name="numero">
                                             </div>
                                             <br>
                                             
@@ -38,7 +45,7 @@
                                                 <label for="exampleInputPassword1">Ingrese el objetivo de la
                                                     unidad</label>
                                                 <input type="text" required class="form-control" id="objetivo"
-                                                    placeholder="Escribe el objetivo de la unidad">
+                                                    placeholder="Escribe el objetivo de la unidad" name="objetivo">
                                                 <small class="form-text text-muted">Proporciona una breve
                                                     descripción del objetivo de la unidad.</small>
 
