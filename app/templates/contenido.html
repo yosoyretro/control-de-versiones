@@ -4,21 +4,104 @@
 
 <div id="layoutSidenav_content">
     <main>
-        <!-- ... Tu código HTML existente ... -->
-<div id="formularios-container" class="container text-center p-4 border radius" style="background-color: rgb(243, 243, 243);">
-    <form method="post" id="formulario-original">
-        {% csrf_token %}
-        <div class="content-wrapper">
-            <!-- ... Tu contenido de formulario existente ... -->
-            <input type="text" placeholder="nombre-contenido" name="nombre-contenido">
-            <input type="text" placeholder="horas-doncencia" name="horas-doncencia">
-            <input type="text" placeholder="horas-practica" name="horas-practica">
+        <div class="">
+            <b><label for="" class="container text-light text-center bg-danger w-100">Llene los campos que se les
+                    pide</label></b>
         </div>
-    </form>
-</div>
-<!-- Contenedor para las filas de formularios clonados -->
-<div id="formularios-filas" class="container mt-3"></div>
-<!-- ... Tu código HTML existente ... -->
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row d-flex flex-content justify-content-center m-5">
+                
+                <div class="col">
+                    <select id="" class="form-control " name="opcion-asignatura">
+                        <option value="">Seleccione la asignatura</option>
+                        {% for i in asignatura %}
+                            <option value="{{ i.id }}">{{ i.nombre }}</option>
+                        {%  endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <select id="" class="form-control " name="opcion-unidad">
+                        <option>Seleccione la unidad</option>
+                        {% for i in unidad %}
+                            <option value="{{ i.id }}">{{ i.numero }} . {{ i.nombre }}</option>
+                        {%  endfor %}
+                    </select>
+                </div>
+
+                <br><br>
+                <div class="row ">
+                    <div class="col border p-5 w-100 card">
+                        <div class="row">
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese el numero</label>
+                            <input type="number" name="n1" class="w-100" placeholder="numero del contenido" name="1" required>
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese el contenido</label>
+                            <input type="text" class="w-100" placeholder="nombre del contenido" required name="nc1">
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese las horas</label>
+                            <input type="number" class="col-3" name="hd1" required placeholder="horas de docencia">
+                            <input type="number" class="col-3" name="hpd1" required placeholder="horas de practica ">
+                            <input type="number" class="col-3" name="hgp1" required placeholder="gestion de practica ">
+                            <input type="number" class="col-3 " name="ha1" required placeholder="horas autonomas">
+                        </div>
+
+                    </div>
+
+                    <div class="col border p-5 w-100 card">
+                        <div class="row">
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese el numero</label>
+                            <input type="number" name="n2" class="w-100" placeholder="numero del contenido" name="1" required>
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese el contenido</label>
+                            <input type="text" class="w-100" placeholder="nombre del contenido" required name="nc2">
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese las horas</label>
+                            <input type="number" class="col-3" name="hd2" required placeholder="horas de docencia">
+                            <input type="number" class="col-3" name="hpd2" required placeholder="horas de practica ">
+                            <input type="number" class="col-3" name="hgp2" required placeholder="gestion de practica ">
+                            <input type="number" class="col-3 " name="ha2" required placeholder="horas autonomas">
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="p-2">
+                </div>
+                <div class="row">
+                    
+                    <div class="col border p-5 w-100 card">
+                        <div class="row">
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese el numero</label>
+                            <input type="number" name="n3" class="w-100" placeholder="numero del contenido" name="1" required>
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese el contenido</label>
+                            <input type="text" class="w-100" placeholder="nombre del contenido" required name="nc3">
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese las horas</label>
+                            <input type="number" class="col-3" name="hd3" required placeholder="horas de docencia">
+                            <input type="number" class="col-3" name="hpd3" required placeholder="horas de practica ">
+                            <input type="number" class="col-3" name="hgp3" required placeholder="gestion de practica ">
+                            <input type="number" class="col-3 " name="ha3" required placeholder="horas autonomas">
+                        </div>
+
+                    </div>
+                    <div class="col border p-5 w-100 card">
+                        <div class="row">
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese el numero</label>
+                            <input type="number" name="n4" class="w-100" placeholder="numero del contenido" name="1" required>
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese el contenido</label>
+                            <input type="text" class="w-100" placeholder="nombre del contenido" required name="nc4">
+                            <label for="" class="col-9 text-center bg-danger w-100 text-light">Ingrese las horas</label>
+                            <input type="number" class="col-3" name="hd4" required placeholder="horas de docencia">
+                            <input type="number" class="col-3" name="hpd4" required placeholder="horas de practica ">
+                            <input type="number" class="col-3" name="hgp4" required placeholder="gestion de practica ">
+                            <input type="number" class="col-3 " name="ha4" required placeholder="horas autonomas">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row m-5 m-2">
+                <input type="submit" value="Crear" class="btn btn-success">
+            </div>
+            
+        </form>
 
     </main>
 </div>

@@ -82,22 +82,11 @@ class Contenido(models.Model):
     horas_gestion_practica = models.IntegerField()
     minutos_practicas_docencias = models.IntegerField()
     horas_autonomas = models.IntegerField()
-    id_unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     estado = models.BooleanField(default=True)
 
     def __str__(self):
         return f"Contenido {self.id}"
-
-
-class Subcontenido(models.Model):
-    numero = models.IntegerField()
-    id_contenido = models.ForeignKey(Contenido, on_delete=models.CASCADE)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
-    estado = models.BooleanField(default=True)
-
-    def __str__(self):
-        return f"Subcontenido {self.id}"
 
 
 class Rol(models.Model):
@@ -123,16 +112,14 @@ class Trabajador(models.Model):
     def __str__(self):
         return f"Trabajador {self.id}"
 
+class Asignaciones(models.Model):  
+    id_contenido = models.ForeignKey(Contenido,on_delete=models.CASCADE)
+    id_unidad = models.ForeignKey(Unidad,on_delete=models.CASCADE)
+    id_asignaturas = models.ForeignKey(Asignatura,on_delete=models.CASCADE)
+    
 
 class DatosInformativos(models.Model):
-    prerequisitos = models.TextField()
-    total_horas_docencia = models.IntegerField()
-    total_horas_practicas = models.IntegerField()
-    total_horas_docente = models.IntegerField()
-    total_horas_autonomas = models.IntegerField()
-    horas_trabajos_autonomo = models.IntegerField()
-    id_asignatura = models.ForeignKey(Asignatura, on_delete=models.CASCADE)
-    id_unidad = models.ForeignKey(Unidad, on_delete=models.CASCADE)
+    id_asignatura = models.ForeignKey(Asignaciones,on_delete=models.CASCADE)
     jefe_area = models.ForeignKey(Trabajador, related_name='jefe_area', on_delete=models.CASCADE)
     coordinador_carrera = models.ForeignKey(Trabajador, related_name='coordinador_carrera', on_delete=models.CASCADE)
     responsable1 = models.ForeignKey(Trabajador, related_name='responsable1', on_delete=models.CASCADE)

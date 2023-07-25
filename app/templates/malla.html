@@ -8,12 +8,9 @@
     <main>
         <div class="container-fluid px-4">
             <br>
-
-
             <form method="post">
                 {% csrf_token %}
                 <div class="content-wrapper">
-
                     <div class="content-header">
                         <div class="container-fluid">
                             <div class="row mb-2">
@@ -25,7 +22,8 @@
                                                 <div class="col-auto">
                                                     <div class="col-5 w-100">
                                                         <div class="col">
-                                                            <button type="button" class="btn bg-transparent text-dark border"
+                                                            <button type="button"
+                                                                class="btn bg-transparent text-dark border"
                                                                 data-bs-target="#firmas" data-bs-toggle="modal">Añadir
                                                                 firmas de
                                                                 responsabilidad</button>
@@ -35,19 +33,14 @@
                                                 <div class="col-auto">
                                                     <div class="col-5 w-100">
                                                         <div class="col">
-                                                            <button type="button" class="btn btn-trasnparent text-dark border">Añadir
+                                                            <button type="button" data-bs-target="#referencia"
+                                                                data-bs-toggle="modal"
+                                                                class="btn btn-trasnparent text-dark border">Añadir
                                                                 referencia</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-auto">
-                                                    <div class="col-5 w-100">
-                                                        <div class="col">
-                                                            <button class="btn btn-transparent border text-dark ">Añadir ambiente
-                                                                de desarrollo </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
 
                                         </div>
@@ -56,29 +49,245 @@
                                         <br>
                                         <div class="row">
 
-                                            <div class="col-5 w-100">
+                                            <div class ="col-5 w-100">
                                                 <label for="exampleInputPassword1">Seleccione la Asignatura</label>
-                                                <select name="" id="" class="form-control">
+                                                <select name="Asignaturas" id="" class="form-control">
                                                     <option>....</option>
+                                                    {% for items in asignaturas %}
+                                                    <option value="{{ items.id }}">{{ items.nombre }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <br>
-
+                                            <br>
                                         </div>
-                                        <br>
-                                        <div class="col-5 w-100">
-                                            <label for="exampleInputPassword1">Añada un objetivo a este año
-                                                electivo</label>
-                                            <input type="text" class="w-100 form-control" placeholder="objetivo">
-                                        </div>
-                                        <br>
-                                        <br>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="modal fade" id="referencia" tabindex="-1" aria-labelledby="referencia"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Referencias</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                        <div class="content-wrapper">
+
+                                            <div class="content-header">
+                                                <div class="container-fluid">
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-12">
+
+                                                            <div class="card-body w-100">
+                                                                <div class="form-group">
+                                                                    <div class="border p-4 rounded-5 rounded-top text-dark"
+                                                                        style="background-color: rgba(224, 224, 224, 0.77);">
+                                                                        <label for="">Basica</label>
+                                                                        <div class="col-auto">
+                                                                            <label for="">Numero</label>
+                                                                            <input type="text" name="numeroBasica"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <label for="">TÍTULO DE LA OBRA (Autor, año,
+                                                                                nombre de la obra, fuente) (aplicar
+                                                                                normas APA7)</label>
+                                                                            <input type="text" name="basicaTituloObra"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="col">
+                                                                            <label for="">Existencia en Biblioteca
+                                                                                (definir física o digital) </label>
+                                                                            <input type="text"
+                                                                                name="basicaExistenciaBiblioteca"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="col">
+                                                                            <label for="">Número de ejemplares</label>
+                                                                            <input class="form-control"
+                                                                                name="basicaNumeroEjemplares">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <br><br>
+
+                                                                    <div class="border p-4 rounded-5 rounded-top text-dark"
+                                                                        style="background-color: rgba(224, 224, 224, 0.77);">
+                                                                        <label for="">Complementaria</label>
+                                                                        <div class="col-auto">
+                                                                            <label for="">Numero</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="complementariaNumero">
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <label for="">TÍTULO DE LA OBRA (Autor, año,
+                                                                                nombre de la obra, fuente) (aplicar
+                                                                                normas APA7)</label>
+                                                                            <input type="text"
+                                                                                name="complementariaTituloObra"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <br> <br>
+                                                                        <div class="col">
+                                                                            <label for="">Existencia en Biblioteca
+                                                                                (definir física o digital) </label>
+                                                                            <input type="text" class="form-control">
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="col">
+                                                                            <label for="">Número de ejemplares</label>
+                                                                            <input name="numeroEjemplares"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <br><br>
+                                                                    <div class="border p-4 rounded-5 rounded-top text-dark"
+                                                                        style="background-color: rgba(224, 224, 224, 0.77);">
+                                                                        <label for="">Sitios Web</label>
+                                                                        <div class="col-auto">
+                                                                            <label for="">Numero</label>
+                                                                            <input type="text" name="sitiosNumero"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <label for="">DIRECCIONES ELECTRONICAS/
+                                                                                URL</label>
+                                                                            <input type="text" name="sitiosDirecciones"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <br>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn bg-trasnparent border w-100"
+                                                data-bs-dismiss="modal">cerrar</button>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="firmas" tabindex="-1" aria-labelledby="firmas" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Firma de responsabilidad</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="content-wrapper">
+
+                                            <div class="content-header">
+                                                <div class="container-fluid">
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-12">
+
+                                                            <div class="card-body ">
+                                                                <div class="form-group">
+                                                                    <label for="">Seleccione el al responsable 1</label>
+                                                                    <br>
+
+                                                                    <select class="custom-select form-control w-100"
+                                                                        id="exampleSelectBorder" name="referencia1">
+                                                                        {% for i in trabajadores %}
+                                                                        <option value="{{ i.id }}">{{ i.nombres }} {{i.apellidos }} ({{i.id_rol.nombre }})
+                                                                        </option>
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                    <br>
+                                                                    <label for="">Seleccione el al responsable 2</label>
+                                                                    <br>
+                                                                    <select class="custom-select form-control w-100"
+                                                                        id="exampleSelectBorder" name="referencia2">
+                                                                        {% for i in trabajadores %}
+                                                                        <option value="{{ i.id }}">{{ i.nombres }} {{i.apellidos }} ({{i.id_rol.nombre }})
+                                                                        </option>
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                    <br>
+                                                                    <label for="">Seleccione el al responsable 3</label>
+                                                                    <br>
+                                                                    <select class="custom-select form-control w-100"
+                                                                        id="exampleSelectBorder" name="referencia3">
+                                                                        {% for i in trabajadores %}
+                                                                        <option value="{{ i.id }}">{{ i.nombres }} {{ i.apellidos }} ({{ i.id_rol.nombre }})
+                                                                        </option>
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                    <br>
+
+                                                                    <label for="">Seleccione el al Jefe de area </label>
+                                                                    <br>
+
+                                                                    <select class="custom-select form-control w-100"
+                                                                        id="exampleSelectBorder" name="jefe">
+                                                                        {% for i in trabajadores %}
+
+                                                                        {% if i.id_rol.nombre == "Jefe de area" %}
+                                                                        <option value="{{ i.id }}">{{ i.nombres }} {{ i.apellidos }}</option>
+                                                                        {% endif %}
+
+                                                                        {% endfor %}
+                                                                    </select>
+
+                                                                    <br>
+                                                                    <label for="">Seleccione el al Cordinado de
+                                                                        carrera</label>
+                                                                    <br>
+
+                                                                    <select class="custom-select form-control w-100"
+                                                                        id="exampleSelectBorder" name="cordinador">
+                                                                        {% for i in trabajadores %}
+
+                                                                        <option value="{{ i.id }}">{{ i.nombres }} {{
+                                                                            i.apellidos }}</option>
+                                                                        
+                                                                        {% endfor %}
+                                                                    </select>
+
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn bg-trasnparent border w-100"
+                                                data-bs-dismiss="modal">cerrar</button>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary w-100" name="btn-unidad" value="Crear"></input>
@@ -92,108 +301,6 @@
     </main>
 
 </div>
-
-
-
-<div class="modal fade" id="firmas" tabindex="-1" aria-labelledby="firmas" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Firma de responsabilidad</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="content-wrapper">
-
-                        <div class="content-header">
-                            <div class="container-fluid">
-                                <div class="row mb-2">
-                                    <div class="col-sm-12">
-
-                                        <div class="card-body ">
-                                            <div class="form-group">
-                                                <label for="">Seleccione el al responsable 1</label>
-                                                <br>
-
-                                                <select class="custom-select form-control w-100"
-                                                    id="exampleSelectBorder" name="referencia1">
-                                                    {% for i in trabajadores %}
-                                                    <option value="{{ i.id }}">{{ i.nombres }}{{ i.apellidos }} ({{i.id_rol.nombre }})</option>
-                                                    {% endfor %}
-                                                </select>
-                                                <br>
-                                                <label for="">Seleccione el al responsable 2</label>
-                                                <br>
-                                                <select class="custom-select form-control w-100"
-                                                    id="exampleSelectBorder" name="referencia2">
-                                                    {% for i in trabajadores %}
-                                                    <option value="{{ i.id }}">{{ i.nombres }}{{ i.apellidos }} ({{i.id_rol.nombre }})</option>
-                                                    {% endfor %}
-                                                </select>
-                                                <br>
-                                                <label for="">Seleccione el al responsable 3</label>
-                                                <br>
-                                                <select class="custom-select form-control w-100"
-                                                    id="exampleSelectBorder" name="referencia3">
-                                                    {% for i in trabajadores %}
-                                                        <option value="{{ i.id }}">{{ i.nombres }}{{ i.apellidos }} ({{ i.id_rol.nombre }})</option>
-                                                    {% endfor %}
-                                                </select>
-                                                <br>    
-
-                                                <label for="">Seleccione el al Jefe de area </label>
-                                                <br>
-
-                                                <select class="custom-select form-control w-100"
-                                                    id="exampleSelectBorder" name="opciones">
-                                                    {% for i in trabajadores %}
-                                                    
-                                                    {% if i.id_rol.nombre == "Jefe de area" %}
-                                                        <option value="{{ i.id }}">{{ i.nombres }} {{ i.apellidos }}</option>
-                                                    {% endif %}
-
-                                                    {% endfor %}
-                                                </select>
-
-                                                <br>
-                                                <label for="">Seleccione el al Cordinado de carrera</label>
-                                                <br>
-
-                                                <select class="custom-select form-control w-100"
-                                                    id="exampleSelectBorder" name="opciones">
-                                                    {% for i in trabajadores %}
-                                                    
-                                                    {% if i.id_rol.nombre == "Cordinador de carrera" %}
-                                                        <option value="{{ i.id }}">{{ i.nombres }} {{ i.apellidos }}</option>
-                                                    {% endif %}
-
-                                                    {% endfor %}
-                                                </select>
-
-
-                                            </div>
-                                        </div>
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-trasnparent border w-100"
-                            data-bs-dismiss="modal">cerrar</button>
-
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 {% endblock content %}
